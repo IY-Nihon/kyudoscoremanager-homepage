@@ -1,0 +1,954 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="google-site-verification" content="yHtwUz4tzZVauI-hcLznZ7PizyZddWQVcQwgKODEXjQ" />
+  <meta name="theme-color" content="#0a0c10">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="的中ノート">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="format-detection" content="telephone=no">
+  <title>弓道部的中ノート | 弓道の的中記録・分析・部活のチーム管理</title>
+<meta name="description" content="弓道の的中記録、履歴管理、データ分析、メンバー管理を直感的に行えるWebアプリ「弓道部的中ノート」。AIチャットボットが24時間あなたの弓道をサポートし、さらなる高みへ。">
+  <link rel="canonical" href="https://kyudoscoremanagehomepage.netlify.app/">
+
+  <!-- Open Graph -->
+  <meta property="og:site_name" content="弓道部的中ノート">
+  <meta property="og:title" content="弓道部的中ノート | 弓道の的中記録・分析・部活のチーム管理">
+  <meta property="og:description" content="弓道の的中記録、履歴管理、データ分析、メンバー管理を直感的に行えるWebアプリ「弓道部的中ノート」。AIチャットボットが24時間あなたの弓道をサポートし、さらなる高みへ。">
+  <meta property="og:url" content="https://kyudoscoremanagehomepage.netlify.app/">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="ja_JP">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="弓道部的中ノート | 弓道の的中記録・分析・部活のチーム管理">
+  <meta name="twitter:description" content="弓道の的中記録、履歴管理、データ分析、メンバー管理を直感的に行えるWebアプリ「弓道部的中ノート」。AIチャットボットが24時間あなたの弓道をサポートし、さらなる高みへ。">
+  <meta property="og:image" content="https://kyudoscoremanagehomepage.netlify.app/og-image.png">
+  <meta property="og:image:secure_url" content="https://kyudoscoremanagehomepage.netlify.app/og-image.png">
+  <meta property="og:image:type" content="image/png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="弓道部的中ノート - 部活・団体で使える完全無料の的中記録・分析・管理Webアプリ">
+  <meta name="twitter:image" content="https://kyudoscoremanagehomepage.netlify.app/og-image.png">
+  <meta name="twitter:image:alt" content="弓道部的中ノート - 部活・団体で使える完全無料の的中記録・分析・管理Webアプリ">
+  <meta name="keywords" content="弓道, 的中管理, 弓道アプリ, 的中記録, スコア管理, 弓道部, 弓道会, チーム管理, 的中率">
+
+  
+      <link rel="preload" as="image" href="/optimized/hero_bg.webp" type="image/webp" fetchpriority="high">
+
+  <!-- ファビコン -->
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="apple-touch-icon" sizes="192x192" href="/icon-192.png">
+  <link rel="shortcut icon" href="/favicon.ico">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎯</text></svg>" type="image/svg+xml">
+
+  <!-- フォント -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Noto+Sans+JP:wght@400;500;700;800&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+  <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Noto+Sans+JP:wght@400;500;700;800&display=swap" rel="stylesheet"></noscript>
+
+  <!-- スタイルシート -->
+  <link rel="stylesheet" href="style.css">
+
+  <!--
+    JSON-LD 構造化データ: アプリケーション情報
+
+    url はこのページ（紹介のページ）を指すこと。ここにアプリ本体の住所を
+    書くと、検索する側が「このページがアプリそのものか、紹介か」を決めかね、
+    評価が2つに分かれる。アプリ本体は sameAs で示す。
+  -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "弓道部的中ノート",
+    "url": "https://kyudoscoremanagehomepage.netlify.app/",
+    "sameAs": ["https://kyudoscoremanager.web.app/"],
+    "applicationCategory": "SportsApplication",
+    "operatingSystem": "Web Browser",
+    "description": "弓道の的中記録、履歴管理、データ分析、メンバー管理を直感的に行えるWebアプリケーション。AIチャットボットによる24時間サポート機能を搭載。",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "JPY"
+    },
+    "featureList": [
+      "的中記録（○×入力）",
+      "ライブスコア共有",
+      "履歴管理・検索",
+      "的中率グラフ・ランキング分析",
+      "出欠管理・出席率自動計算",
+      "AIチャットボットサポート",
+      "Excelデータ出力",
+      "オフライン対応・クラウド同期",
+      "メンバー管理・自動進級"
+    ]
+  }
+  </script>
+
+  <!-- JSON-LD 構造化データ: FAQ（Google検索リッチリザルト対応） -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "本当に無料で使えますか？追加料金などはかかりますか？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "はい、初期費用・月額利用料ともに完全無料でご利用いただけます。追加の課金要素もありません。なお、AIチャットボットや予定表スキャンなどのAI機能は、ご利用状況により一時的にご利用回数の上限に達する場合があります。"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "アプリのインストールやダウンロードは必要ですか？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "不要です。Webブラウザ（SafariやGoogle Chrome等）で専用のURLを開くだけで、スマホ、タブレット、PCなどすべての端末からすぐにお使いいただけます。また、iPhone (Safari) の「ホーム画面に追加」機能や、Android (Chrome) の「アプリをインストール」または「ホーム画面に追加」機能をご利用いただくと、フルスクリーン表示で本物のアプリのように快適にお使いいただけます。"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "セキュリティやデータ保護は安全ですか？他の団体にデータが見られませんか？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "データはFirebaseのセキュリティ基盤上で管理され、通信は暗号化されています。各団体が設定した団体ID・パスワードでログインする仕組みのため、他の団体のIDやパスワードを知らない限り、通常の操作で他団体のデータが画面に表示されることはありません。"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "アプリの上部にあるタブはそれぞれ何に使うの？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "それぞれ以下の機能があります。【記録】今日の立ち（チーム）を作り、的中を入力します。【履歴】過去のデータの確認や修正、削除を行います。【分析】部全体の調子や、個人の詳細成績、ランキングを確認します。【出欠】カレンダーで正規練習日を決め、出席率を確認します。【メンバー】部員の追加や削除を行います。【設定】Excelでの書き出しや自動進級設定等を行います。"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "他のスマホで同じデータを共有できる？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "同じグループIDとパスワードでログインすれば完全に同期されます。"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "通信が切れたらデータはどうなる？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "オフラインでも記録可能で、通信が回復した時に自動でクラウドに同期されます。"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "パスワードを忘れた場合は？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "ログイン画面にある「パスワードを忘れた」のリンクから、登録メールアドレス宛に再設定メールを送信してください。"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "年度が変わったら学年はどうなる？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "設定タブの「4月1日の自動進級」がオンになっていれば、すべてのメンバーの学年が自動で更新されます。卒業生のデータも消えずにそのまま残ります。"
+        }
+      }
+    ]
+  }
+  </script>
+  <noscript>
+    <style>
+      #loading-screen { display: none !important; }
+      .fade-up { opacity: 1 !important; transform: none !important; }
+    </style>
+  </noscript>
+
+  <!-- JSON-LD 構造化データ: 組織・開発チーム情報 (E-E-A-T) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SportsOrganization",
+    "name": "弓道部的中ノート",
+    "url": "https://kyudoscoremanagehomepage.netlify.app/",
+    "logo": "https://kyudoscoremanagehomepage.netlify.app/ogp.jpg",
+    "description": "中学校・高校・大学弓道部および社会人弓道会向けスコア管理・分析システムの開発・運営",
+    "email": "kyudoteamscorenote.dev@gmail.com",
+    "sameAs": [
+      "https://kyudoscoremanager.web.app/"
+    ]
+  }
+  </script>
+</head>
+<body>
+  <!-- 読了プログレスバー -->
+  <div id="reading-progress" aria-hidden="true"></div>
+  <!-- スキップリンク（アクセシビリティ対応） -->
+  <a href="#main-content" class="skip-link">メインコンテンツへスキップ</a>
+
+  <!-- ローディング画面 -->
+  <div id="loading-screen">
+    <div class="loading-mato" aria-hidden="true"></div>
+    <p class="loading-text">LOADING</p>
+  </div>
+
+  <!-- ナビゲーションバー -->
+  <header class="navbar" role="banner">
+        <a href="index.html" class="logo">🎯 弓道部的中ノート</a>
+    <nav role="navigation" aria-label="メインナビゲーション">
+      <a href="#features">機能</a>
+      <a href="#faq">FAQ</a>
+      <a href="https://kyudoscoremanager.web.app/" target="_blank" rel="noopener noreferrer" class="btn-primary">はじめる</a>
+    </nav>
+  </header>
+
+  <main id="main-content">
+
+  <!-- ヒーローセクション -->
+  <section class="hero" id="hero">
+    <picture class="hero-bg">
+      <source type="image/avif" srcset="/optimized/hero_bg.avif">
+      <source type="image/webp" srcset="/optimized/hero_bg.webp">
+      <img src="/hero_bg.png" alt="弓道場の背景画像" width="1920" height="1080" fetchpriority="high" decoding="async">
+    </picture>
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <span class="hero-badge fade-up">無料で使える弓道管理ツール</span>
+      <h1 class="fade-up delay-1">弓道部的中ノート</h1>
+      <p class="fade-up delay-2">練習後の電卓手計算や、雨で濡れる紙の記録表から解放。<br>部活動や弓道会の的中管理を、もっと手軽に、もっとスマートに。</p>
+      <div class="hero-buttons fade-up delay-3">
+        <a href="#features" class="btn-primary large">機能を見る</a>
+        <a href="https://kyudoscoremanager.web.app/" target="_blank" rel="noopener noreferrer" class="btn-secondary">アプリを開く →</a>
+      </div>
+      <div class="hero-microcopy fade-up delay-3">
+        <span>✓ 完全無料</span>
+        <span>✓ 面倒な登録なしですぐ試せる</span>
+        <span>✓ インストール不要</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- アプリ概要・AEO定義セクション -->
+  <section id="about" class="about-section fade-up">
+    <div class="about-container">
+      <div class="about-badge">ARCHERY SCORE TRACKER</div>
+      <h2 class="about-title">弓道部的中ノートとは</h2>
+      <p class="about-lead">
+        <strong>弓道部的中ノート</strong>は、弓道部出身のエンジニアが現場のリアルな課題を解決するために開発した、<strong>完全無料・インストール不要の的中記録・データ分析Webアプリケーション</strong>です。全国の中学校・高校・大学の弓道部から一般弓道会、実業団まで幅広く対応。<br>
+        インターハイ（高校総体）や各種大会の公式戦ルール（5人立ち・3人立ち、一手・四射）に完全対応。大前・二的・中・落前・落の立ち順ごとの的中傾向分析から、複数端末でのリアルタイムLive共有、的中率ランキングや出欠の全自動集計、年度替わりの部員進級まで、弓道のあらゆる管理業務をスマートにペーパーレス化します。
+      </p>
+
+      <!-- 開発者ストーリー・一次情報（E-E-A-T） -->
+      <div class="developer-profile">
+        <div class="dev-avatar" aria-hidden="true">🏹</div>
+        <div class="dev-info">
+          <span class="dev-badge">DEVELOPER STORY</span>
+          <p class="dev-text">
+            <strong>弓道部出身のエンジニアが現場目線で開発</strong><br>
+            「毎日の練習後に電卓で何十分もかけて手計算する負担をなくしたい」「雨や風で紙の記録用紙が濡れて破れるのを防ぎたい」という自身の部活動での実体験から、現場の選手・顧問・主将のために開発しました。
+          </p>
+        </div>
+      </div>
+
+      <!-- クイックスペック一覧（AI抽出・ユーザー即時判定用） -->
+      <div class="quick-specs-grid">
+        <div class="spec-card">
+          <div class="spec-icon">💰</div>
+          <div class="spec-label">利用料金</div>
+          <div class="spec-value">完全無料（課金なし）</div>
+          <div class="spec-desc">初期費用・月額利用料0円。すべての機能を無料開放</div>
+        </div>
+        <div class="spec-card">
+          <div class="spec-icon">📱</div>
+          <div class="spec-label">対応端末・環境</div>
+          <div class="spec-value">全端末対応（PWA対応）</div>
+          <div class="spec-desc">iPhone, Android, iPad, PC/Mac。ホーム追加で全画面アプリ化</div>
+        </div>
+        <div class="spec-card">
+          <div class="spec-icon">🎯</div>
+          <div class="spec-label">対応射法・形式</div>
+          <div class="spec-value">4射・一手・矢所・途中交代</div>
+          <div class="spec-desc">立ち順の間隔追加、ゲスト参加、射数変更（4〜20射）</div>
+        </div>
+        <div class="spec-card">
+          <div class="spec-icon">📶</div>
+          <div class="spec-label">データ通信・同期</div>
+          <div class="spec-value">オフライン対応 ＆ クラウド同期</div>
+          <div class="spec-desc">電波のない道場でも記録可能。通信回復時に自動でクラウドへ保存</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 従来手法との比較表セクション -->
+  <section id="comparison" class="comparison-section fade-up">
+    <div class="section-header">
+      <span class="section-accent"></span>
+      <h2>紙やExcelでの管理と何が違うのか？</h2>
+      <p>日々の的中管理で生じる悩みや事務負担を、専用設計で解決します</p>
+    </div>
+
+    <div style="text-align: center;">
+      <div class="scroll-hint-badge" aria-hidden="true">
+        <span>👈 左右にスライドして全体を比較 ➔</span>
+      </div>
+    </div>
+    <div class="comparison-table-wrapper">
+      <table class="comparison-table">
+        <thead>
+          <tr>
+            <th>比較項目</th>
+            <th>紙の記録用紙・黒板</th>
+            <th>一般的なExcel / スプレッドシート</th>
+            <th class="highlight-col">🎯 弓道部的中ノート（本アプリ）</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>記録のつけやすさ</strong></td>
+            <td><span class="comp-badge-bad">✕</span> 雨や風で濡れる、鉛筆・赤ペンが必要</td>
+            <td><span class="comp-badge-neutral">△</span> スマホでの文字・数値入力が窮屈</td>
+            <td class="highlight-col"><span class="comp-badge-good">◎</span> 画面タップだけで○×・矢所を瞬時記録</td>
+          </tr>
+          <tr>
+            <td><strong>リアルタイム共有</strong></td>
+            <td><span class="comp-badge-bad">✕</span> 控室や遠くの射場からは見えない</td>
+            <td><span class="comp-badge-neutral">△</span> 同時編集での競合や読み込み遅延</td>
+            <td class="highlight-col"><span class="comp-badge-good">◎</span> 複数スマホでリアルタイムLive同期（期限設定可）</td>
+          </tr>
+          <tr>
+            <td><strong>的中率・ランキング集計</strong></td>
+            <td><span class="comp-badge-bad">✕</span> 練習後に電卓で手計算（膨大な時間）</td>
+            <td><span class="comp-badge-neutral">△</span> 関数やマクロの知識が必要、壊れやすい</td>
+            <td class="highlight-col"><span class="comp-badge-good">◎</span> 立ち順別的中率・結果分布まで全自動集計</td>
+          </tr>
+          <tr>
+            <td><strong>矢所・弓具の傾向分析</strong></td>
+            <td><span class="comp-badge-bad">✕</span> 的紙を保管するか、感覚に頼るのみ</td>
+            <td><span class="comp-badge-bad">✕</span> 座標や図の記録・分析が極めて困難</td>
+            <td class="highlight-col"><span class="comp-badge-good">◎</span> 的の図タップで矢所記録＆弓具変更相関を可視化</td>
+          </tr>
+          <tr>
+            <td><strong>出欠・練習日程管理</strong></td>
+            <td><span class="comp-badge-bad">✕</span> 出席簿の別管理、集計の手間</td>
+            <td><span class="comp-badge-neutral">△</span> 手動転記が必要</td>
+            <td class="highlight-col"><span class="comp-badge-good">◎</span> 予定表写真AI読取 ＆ 記録連動で出席率自動計算</td>
+          </tr>
+          <tr>
+            <td><strong>紛失・破損リスク</strong></td>
+            <td><span class="comp-badge-bad">✕</span> 破れ、紛失、代変わり時の散逸</td>
+            <td><span class="comp-badge-neutral">△</span> ファイルの上書き事故や破損の恐れ</td>
+            <td class="highlight-col"><span class="comp-badge-good">◎</span> クラウド自動保存＆ゴミ箱復元・Excel出力対応</td>
+          </tr>
+          <tr>
+            <td><strong>導入コスト・準備</strong></td>
+            <td><span class="comp-badge-good">◯</span> 用紙代のみ</td>
+            <td><span class="comp-badge-neutral">△</span> アカウント作成やソフト費用、テンプレ作成</td>
+            <td class="highlight-col"><span class="comp-badge-good">◎</span> 完全無料・インストール不要・数分で導入完了</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- 機能紹介セクション -->
+  <section id="features" class="features">
+    <div class="section-header fade-up">
+      <span class="section-accent"></span>
+      <h2>主な機能</h2>
+      <p>日々の練習をサポートする多彩な機能を搭載</p>
+    </div>
+
+    <!-- 1. スコア記録 -->
+    <div class="feature-item fade-up">
+      <div class="feature-text">
+        <span class="feature-tag">CORE</span>
+        <h3>スムーズなスコア記録とLive共有</h3>
+        <p>メンバー一覧からワンタップで射手を追加し、「◯」「×」の的中を瞬時に記録。途中交代やゲスト登録にも対応し、射数の柔軟な変更（4射〜20射）やUndo/Redo機能も搭載。「ライブ機能」で複数デバイス間のリアルタイム同期も可能。参加時に「記録用」か「閲覧用」を選べるので、担当以外の誤操作を防げます。記録表は横向きにも切り替えでき、入力済みのマスは3秒後に自動で鍵がかかります（長押しで解除）。URL共有リンクは12時間〜7日間の有効期限設定や合言葉（パスコード）保護に対応し、外部大会や練習試合での安全な共有も万全です。</p>
+      </div>
+      <div class="device-frame">
+        <div class="phone-mockup">
+          <div class="phone-notch"></div>
+          <div class="phone-screen slideshow">
+            <picture>
+              <source type="image/avif" srcset="/optimized/record_ui.avif">
+              <source type="image/webp" srcset="/optimized/record_ui.webp">
+              <img src="/record_ui.png" alt="弓道記録画面：メンバー選択" class="slide active" width="390" height="844" decoding="async">
+            </picture>
+            <picture>
+              <source type="image/avif" srcset="/optimized/record_insert_ui.avif">
+              <source type="image/webp" srcset="/optimized/record_insert_ui.webp">
+              <img src="/record_insert_ui.png" alt="弓道記録画面：射手・間隔の追加" class="slide" width="390" height="844" decoding="async">
+            </picture>
+            <picture>
+              <source type="image/avif" srcset="/optimized/record_swap_ui.avif">
+              <source type="image/webp" srcset="/optimized/record_swap_ui.webp">
+              <img src="/record_swap_ui.png" alt="弓道記録画面：途中交代" class="slide" width="390" height="844" decoding="async">
+            </picture>
+            <picture>
+              <source type="image/avif" srcset="/optimized/record_shots_ui.avif">
+              <source type="image/webp" srcset="/optimized/record_shots_ui.webp">
+              <img src="/record_shots_ui.png" alt="弓道記録画面：射数変更" class="slide" width="390" height="844" decoding="async">
+            </picture>
+          </div>
+          <div class="phone-home-indicator"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2. 分析 -->
+    <div class="feature-item reverse fade-up">
+      <div class="feature-text">
+        <span class="feature-tag">ANALYTICS</span>
+        <h3>詳細な分析とランキング</h3>
+        <p>的中率や傾向をグラフで可視化し、自身の課題発見をサポート。メンバー別の的中率ランキングで、チーム全体の状態を一目で把握。データはクラウドに自動で安全に同期されるため、機種変更時も安心です。</p>
+      </div>
+      <div class="device-frame">
+        <div class="phone-mockup">
+          <div class="phone-notch"></div>
+          <div class="phone-screen slideshow">
+            <picture>
+              <source type="image/avif" srcset="/optimized/analysis_ui.avif">
+              <source type="image/webp" srcset="/optimized/analysis_ui.webp">
+              <img src="/analysis_ui.png" alt="弓道データ分析画面：タグ・期間・学年での絞り込み" class="slide active" loading="lazy" width="390" height="844" decoding="async">
+            </picture>
+            <picture>
+              <source type="image/avif" srcset="/optimized/analysis_rank_ui.avif">
+              <source type="image/webp" srcset="/optimized/analysis_rank_ui.webp">
+              <img src="/analysis_rank_ui.png" alt="弓道データ分析画面：メンバー別の的中率ランキング" class="slide" loading="lazy" width="390" height="844" decoding="async">
+            </picture>
+          </div>
+          <div class="phone-home-indicator"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3. 個人詳細 -->
+    <div class="feature-item fade-up">
+      <div class="feature-text">
+        <span class="feature-tag">PERSONAL</span>
+        <h3>個人別の詳細データ</h3>
+        <p>ランキングから選手をタップすると、1〜4射目の立ち順別的中率や、皆中・三中・羽分けなどの結果分布まで、練習ごとの詳細なデータを確認できます。弓力（kg数）・矢・弦の変更履歴と前後30日間の的中率推移を自動比較する機能も備え、道具選びと射術の成長の相関をデータで振り返ることができます。</p>
+      </div>
+      <div class="device-frame">
+        <div class="phone-mockup">
+          <div class="phone-notch"></div>
+          <div class="phone-screen slideshow">
+            <picture>
+              <source type="image/avif" srcset="/optimized/analysis_detail2_ui.avif">
+              <source type="image/webp" srcset="/optimized/analysis_detail2_ui.webp">
+              <img src="/analysis_detail2_ui.png" alt="個人分析詳細画面：的中率の推移と矢所の傾向" class="slide active" loading="lazy" width="390" height="844" decoding="async">
+            </picture>
+            <picture>
+              <source type="image/avif" srcset="/optimized/analysis_detail3_ui.avif">
+              <source type="image/webp" srcset="/optimized/analysis_detail3_ui.webp">
+              <img src="/analysis_detail3_ui.png" alt="個人分析詳細画面：立ち順別の的中率と立ちの結果分布" class="slide" loading="lazy" width="390" height="844" decoding="async">
+            </picture>
+          </div>
+          <div class="phone-home-indicator"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 4. 履歴 -->
+    <div class="feature-item reverse fade-up">
+      <div class="feature-text">
+        <span class="feature-tag">HISTORY</span>
+        <h3>履歴の振り返り</h3>
+        <p>過去の練習データをクラウドに蓄積。あの日の射はどうだったか、成長の軌跡をいつでも手軽に確認・再集計することが可能です。日付やキーワードで検索でき、誤って消した記録もゴミ箱から復元できます。</p>
+      </div>
+      <div class="device-frame">
+        <div class="phone-mockup">
+          <div class="phone-notch"></div>
+          <div class="phone-screen">
+            <picture>
+              <source type="image/avif" srcset="/optimized/history_ui.avif">
+              <source type="image/webp" srcset="/optimized/history_ui.webp">
+              <img src="/history_ui.png" alt="練習履歴一覧画面：日別の練習記録を時系列で表示" loading="lazy" width="390" height="844" decoding="async">
+            </picture>
+          </div>
+          <div class="phone-home-indicator"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 5. ログイン -->
+    <div class="feature-item fade-up">
+      <div class="feature-text">
+        <span class="feature-tag">TEAM</span>
+        <h3>団体・メンバー管理</h3>
+        <p>部活動や弓道会向けに「団体アカウント」を作成可能。管理者パスワードと4桁の「個人ID」による安全で簡単なログインを提供し、チーム全体のデータを一括管理できます。</p>
+      </div>
+      <div class="device-frame">
+        <div class="phone-mockup">
+          <div class="phone-notch"></div>
+          <div class="phone-screen slideshow">
+            <picture>
+              <source type="image/avif" srcset="/optimized/app_login.avif">
+              <source type="image/webp" srcset="/optimized/app_login.webp">
+              <img src="/app_login.png" alt="団体ログイン画面：弓矢のアニメーション付きダークテーマの認証フォーム" class="slide active" width="390" height="844" decoding="async">
+            </picture>
+            <picture>
+              <source type="image/avif" srcset="/optimized/member_edit_ui.avif">
+              <source type="image/webp" srcset="/optimized/member_edit_ui.webp">
+              <img src="/member_edit_ui.png" alt="メンバー管理画面：メンバーの追加や編集" class="slide" width="390" height="844" decoding="async">
+            </picture>
+          </div>
+          <div class="phone-home-indicator"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 6. メンバーログイン -->
+    <div class="feature-item reverse fade-up">
+      <div class="feature-text">
+        <span class="feature-tag">MEMBER</span>
+        <h3>メンバー個人アカウント</h3>
+        <p>メンバーは団体IDと4桁の個人IDのみでログインでき、パスワード不要で手軽に利用開始。自分だけの的中率推移や矢所分析など、個人に特化した画面で自身の成長を実感できます。</p>
+      </div>
+      <div class="device-frame">
+        <div class="phone-mockup">
+          <div class="phone-notch"></div>
+          <div class="phone-screen">
+            <picture>
+              <source type="image/avif" srcset="/optimized/member_login_ui.avif">
+              <source type="image/webp" srcset="/optimized/member_login_ui.webp">
+              <img src="/member_login_ui.png" alt="個人ログイン画面：団体IDと個人IDで簡単アクセス" loading="lazy" width="390" height="844" decoding="async">
+            </picture>
+          </div>
+          <div class="phone-home-indicator"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 6.5. 個人分析 -->
+    <div class="feature-item fade-up">
+      <div class="feature-text">
+        <span class="feature-tag">MY DATA</span>
+        <h3>マイ・パフォーマンス統計</h3>
+        <p>個人ログインすると、自分だけの「マイ・パフォーマンス統計」画面へ。的中率の推移グラフ、矢所の傾向分析、立ち順別の的中率や結果分布など、自分の射を多角的に振り返ることができます。</p>
+      </div>
+      <div class="device-frame">
+        <div class="phone-mockup">
+          <div class="phone-notch"></div>
+          <div class="phone-screen slideshow">
+            <picture>
+              <source type="image/avif" srcset="/optimized/personal_analysis_ui.avif">
+              <source type="image/webp" srcset="/optimized/personal_analysis_ui.webp">
+              <img src="/personal_analysis_ui.png" alt="個人分析画面：マイ・パフォーマンス統計と的中率推移グラフ" class="slide active" width="390" height="844" decoding="async">
+            </picture>
+            <picture>
+              <source type="image/avif" srcset="/optimized/personal_analysis2_ui.avif">
+              <source type="image/webp" srcset="/optimized/personal_analysis2_ui.webp">
+              <img src="/personal_analysis2_ui.png" alt="個人分析画面：矢所傾向と結果分布" class="slide" width="390" height="844" decoding="async">
+            </picture>
+          </div>
+          <div class="phone-home-indicator"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 7. AIチャット -->
+    <div class="feature-item fade-up">
+      <div class="feature-text">
+        <span class="feature-tag">AI</span>
+        <h3>AIアシスタントが記録から答える</h3>
+        <p>「今月いちばん当てているのは誰？」「大前に向いているのは？」といった質問に、団体の記録をもとに答えます。順位や的中率はアプリ側で集計するため、数字は正確。出欠の集計や、言葉での記録検索にも対応します。</p>
+        <div class="ai-sample-prompts">
+          <span class="ai-prompt-chip">「今月いちばん的中率が高い部員は誰？」</span>
+          <span class="ai-prompt-chip">「大前・落に向いている選手の傾向を分析して」</span>
+          <span class="ai-prompt-chip">「早気や手の内の乱れを直すための練習メニュー」</span>
+        </div>
+      </div>
+      <div class="device-frame">
+        <div class="phone-mockup">
+          <div class="phone-notch"></div>
+          <div class="phone-screen">
+            <picture>
+              <source type="image/avif" srcset="/optimized/ai_chat_ui.avif">
+              <source type="image/webp" srcset="/optimized/ai_chat_ui.webp">
+              <img src="/ai_chat_ui.png" alt="AIチャットボット画面：弓道に関する質問と回答のやり取り" loading="lazy" width="390" height="844" decoding="async">
+            </picture>
+          </div>
+          <div class="phone-home-indicator"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 8. Excel エクスポート・設定 -->
+    <div class="feature-item reverse fade-up">
+      <div class="feature-text">
+        <span class="feature-tag">SETTINGS</span>
+        <h3>設定・データ管理・Excel出力</h3>
+        <p>矢所記録機能の有効化、データのExcel書き出し、クラウド同期の管理など、充実した設定画面。画面の配色はライト・ダーク・端末に合わせるから選べます。初めての方には「使い方を見る」で操作を順番にご案内。同期エラー通知や運用ガイドも搭載し、安心して利用できます。</p>
+      </div>
+      <div class="device-frame">
+        <div class="phone-mockup">
+          <div class="phone-notch"></div>
+          <div class="phone-screen slideshow">
+            <picture>
+              <source type="image/avif" srcset="/optimized/settings_ui.avif">
+              <source type="image/webp" srcset="/optimized/settings_ui.webp">
+              <img src="/settings_ui.png" alt="設定画面：団体情報・画面の配色・自動進級" class="slide active" loading="lazy" width="390" height="844" decoding="async">
+            </picture>
+            <picture>
+              <source type="image/avif" srcset="/optimized/settings2_ui.avif">
+              <source type="image/webp" srcset="/optimized/settings2_ui.webp">
+              <img src="/settings2_ui.png" alt="設定画面：矢所記録の有効化・Excel書き出し・クラウド同期管理" class="slide" loading="lazy" width="390" height="844" decoding="async">
+            </picture>
+          </div>
+          <div class="phone-home-indicator"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 9. 出欠管理 -->
+    <div class="feature-item fade-up">
+      <div class="feature-text">
+        <span class="feature-tag">ATTENDANCE</span>
+        <h3>出欠管理とAIによる練習日自動登録</h3>
+        <p>正規の練習日をカレンダーに設定するだけで、メンバーごとの出席率を月間・年間で自動集計。さらに練習予定表の写真やPDFをAIが解析し、練習日をカレンダーへ自動入力。ホワイトボードの立ち順表や、紙の的中記録表も写真から取り込めるため、手入力の手間を大幅に削減できます。読み取り結果は取り込む前に確認・修正できます。</p>
+      </div>
+      <div class="device-frame">
+        <div class="phone-mockup">
+          <div class="phone-notch"></div>
+          <div class="phone-screen slideshow">
+            <picture>
+              <source type="image/avif" srcset="/optimized/attendance_ui.avif">
+              <source type="image/webp" srcset="/optimized/attendance_ui.webp">
+              <img src="/attendance_ui.png" alt="出欠管理画面：メンバー別の出席率一覧" class="slide active" width="390" height="844" decoding="async">
+            </picture>
+            <picture>
+              <source type="image/avif" srcset="/optimized/attendance_calendar_ui.avif">
+              <source type="image/webp" srcset="/optimized/attendance_calendar_ui.webp">
+              <img src="/attendance_calendar_ui.png" alt="出欠管理画面：AIによる練習日自動入力とカレンダー表示" class="slide" width="390" height="844" decoding="async">
+            </picture>
+          </div>
+          <div class="phone-home-indicator"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- 導入メリットセクション -->
+  <section id="benefits">
+    <div class="section-header fade-up">
+      <span class="section-accent"></span>
+      <h2>部活・団体での導入メリット</h2>
+      <p>部活動や弓道会の運営を、データの力でサポートします</p>
+    </div>
+
+    <div class="benefits-grid">
+      <div class="benefit-card fade-up">
+        <div class="benefit-icon">📊</div>
+        <h3>データに基づくメンバー決め</h3>
+        <p>感覚ではなく、蓄積された的中データに基づいた納得の選手選考・立ち順決めが可能に。チーム全員が納得できる透明性を実現します。</p>
+      </div>
+      <div class="benefit-card fade-up">
+        <div class="benefit-icon">📋</div>
+        <h3>事務負担の激減</h3>
+        <p>練習日程のAI自動登録、出欠の自動集計、学年の自動進級など、面倒な事務作業をアプリが肩代わり。<strong>毎日の練習後に30〜40分かかっていた電卓手計算や紙の転記がゼロになり</strong>、雨で濡れる記録用紙の紛失リスクもゼロに。顧問や主将の負担を劇的に軽減します。</p>
+      </div>
+      <div class="benefit-card fade-up">
+        <div class="benefit-icon">📡</div>
+        <h3>ライブ的中共有</h3>
+        <p>「ライブ機能」で複数のスマホからリアルタイムにスコアを同期。大会や合同練習で、その場にいない仲間やOBにも射の結果を即座に共有できます。</p>
+      </div>
+      <div class="benefit-card fade-up">
+        <div class="benefit-icon">🔄</div>
+        <h3>年度替わりの引き継ぎも安心</h3>
+        <p>顧問教員や部長の交代時に、端末に残った未送信記録のクラウド一括同期や、新年度の個人IDチェック・4月1日自動進級をステップ順に案内。卒業時のデータ消失を防ぎます。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 安心設計セクション -->
+  <section id="reliability" style="background: var(--sumi); border-top: 1px solid var(--glass-border); border-bottom: 1px solid var(--glass-border);">
+    <div class="section-header fade-up">
+      <span class="section-accent"></span>
+      <h2>道場での安心設計</h2>
+      <p>電波の届きにくい弓道場でも安心して使える設計です</p>
+    </div>
+
+    <div class="reliability-cards">
+      <div class="reliability-card fade-up">
+        <div class="reliability-icon">📶</div>
+        <div>
+          <h3>オフライン対応</h3>
+          <p>電波の届かない弓道場でもスコア入力が可能。圏外でも記録は端末に保存され、通信が回復した際に自動でクラウドへ同期されます。</p>
+        </div>
+      </div>
+      <div class="reliability-card fade-up">
+        <div>
+          <div class="reliability-icon">☁️</div>
+        </div>
+        <div>
+          <h3>クラウド自動バックアップ</h3>
+          <p>すべてのデータはFirebaseクラウドに自動保存。スマホを紛失・機種変更しても、同じアカウントでログインすればデータは完全に復元できます。</p>
+        </div>
+      </div>
+      <div class="reliability-card fade-up">
+        <div>
+          <div class="reliability-icon">🔔</div>
+        </div>
+        <div>
+          <h3>アプリ更新通知バー（最新版の自動検知）</h3>
+          <p>新バージョンが配信された際は画面に更新通知バーを表示。開きっぱなしの端末でも最新の安全なプログラムへワンタップで更新できます。</p>
+        </div>
+      </div>
+      <div class="reliability-card fade-up">
+        <div>
+          <div class="reliability-icon">♿</div>
+        </div>
+        <div>
+          <h3>音声読み上げ ＆ 色覚バリアフリー対応</h3>
+          <p>VoiceOver / TalkBack スクリーンリーダーによる的中の音声読み上げ（『大前 1射目 的中』等）や、色覚多様性に配慮したハイコントラスト設計を採用しています。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 導入ロードマップセクション -->
+  <section id="how-to-start">
+    <div class="section-header fade-up">
+      <span class="section-accent"></span>
+      <h2>かんたん3ステップで導入</h2>
+      <p>アカウント登録からチームでの運用開始まで、わずか数分で完了します</p>
+    </div>
+
+    <div class="roadmap fade-up">
+      <div class="roadmap-step">
+        <div class="roadmap-number">1</div>
+        <div class="roadmap-content">
+          <h3>アカウント作成</h3>
+          <p>アプリを開き「新規登録」から団体名とパスワードを設定。メールアドレスを登録し、利用規約とプライバシーポリシーに同意すると、すぐにあなた専用のチームスペースが作成されます。</p>
+        </div>
+      </div>
+      <div class="roadmap-step">
+        <div class="roadmap-number">2</div>
+        <div class="roadmap-content">
+          <h3>メンバーを追加</h3>
+          <p>メンバータブから部員の名前・学年を登録。登録された部員にはそれぞれ個人IDが割り振られ、部員個人のスマホからもログインできるようになります。</p>
+        </div>
+      </div>
+      <div class="roadmap-step">
+        <div class="roadmap-number">3</div>
+        <div class="roadmap-content">
+          <h3>練習を記録開始！</h3>
+          <p>記録タブで射手を選び、○×をタップするだけ。その瞬間からデータが蓄積され、分析・振り返り・メンバー決めに活用できるようになります。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQセクション -->
+  <section id="faq" style="background: var(--sumi); border-top: 1px solid var(--glass-border);">
+    <div class="section-header fade-up">
+      <span class="section-accent"></span>
+      <h2>よくある質問</h2>
+      <p>導入前に気になるポイントをまとめました</p>
+    </div>
+
+    <!-- FAQ一覧 -->
+    <div class="faq-list fade-up">
+
+      <div class="faq-item">
+        <button type="button" class="faq-question active" aria-expanded="true" aria-controls="faq-ans-1">
+          <span class="q-prefix">Q.</span>
+          <span class="q-text">本当に無料で使えますか？追加料金などはかかりますか？</span>
+          <svg class="faq-chevron" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>
+        </button>
+        <div class="faq-answer open" id="faq-ans-1" style="display: block;"><div class="faq-answer-inner">はい、初期費用・月額利用料ともに完全無料でご利用いただけます。追加の課金要素もありません。なお、AIチャットボットや予定表スキャンなどのAI機能は、ご利用状況により一時的にご利用回数の上限に達する場合があります。</div></div>
+      </div>
+
+      <div class="faq-item">
+        <button type="button" class="faq-question" aria-expanded="false" aria-controls="faq-ans-2">
+          <span class="q-prefix">Q.</span>
+          <span class="q-text">アプリのインストールやダウンロードは必要ですか？</span>
+          <svg class="faq-chevron" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>
+        </button>
+        <div class="faq-answer" id="faq-ans-2"><div class="faq-answer-inner">不要です。Webブラウザ（SafariやGoogle Chrome等）で専用のURLを開くだけで、スマホ、タブレット、PCなどすべての端末からすぐにお使いいただけます。<br>また、以下の手順でホーム画面に追加していただくと、アドレスバーが非表示になり、本物のアプリと全く同じように全画面で快適にご利用いただけます。<br><strong>【iPhone (Safari) の場合】</strong><br>ブラウザ下部の「共有（上矢印）アイコン」をタップし、メニューから「ホーム画面に追加」を選択します。<br><strong>【Android (Chrome) の場合】</strong><br>ブラウザ右上の「3点リーダー」をタップし、「アプリをインストール」または「ホーム画面に追加」を選択します。</div></div>
+      </div>
+
+      <div class="faq-item">
+        <button type="button" class="faq-question" aria-expanded="false" aria-controls="faq-ans-3">
+          <span class="q-prefix">Q.</span>
+          <span class="q-text">セキュリティやデータ保護は安全ですか？他の団体にデータが見られませんか？</span>
+          <svg class="faq-chevron" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>
+        </button>
+        <div class="faq-answer" id="faq-ans-3"><div class="faq-answer-inner">データはFirebaseのセキュリティ基盤上で管理され、通信は暗号化されています。各団体が設定した団体ID・パスワードでログインする仕組みのため、他の団体のIDやパスワードを知らない限り、通常の操作で他団体のデータが画面に表示されることはありません。</div></div>
+      </div>
+
+      <div class="faq-item">
+        <button type="button" class="faq-question" aria-expanded="false" aria-controls="faq-ans-4">
+          <span class="q-prefix">Q.</span>
+          <span class="q-text">アプリの上部にあるタブはそれぞれ何に使うの？</span>
+          <svg class="faq-chevron" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>
+        </button>
+        <div class="faq-answer" id="faq-ans-4"><div class="faq-answer-inner">それぞれ以下の機能があります。<br>・【記録】今日の立ち（チーム）を作り、的中を入力します。<br>・【履歴】過去のデータの確認や修正、削除を行います。<br>・【分析】部全体の調子や、個人の詳細成績、ランキングを確認します。<br>・【出欠】カレンダーで正規練習日を決め、出席率を確認します。<br>・【メンバー】部員の追加や削除を行います。<br>・【設定】Excelでの書き出しや自動進級設定等を行います。</div></div>
+      </div>
+
+      <div class="faq-item">
+        <button type="button" class="faq-question" aria-expanded="false" aria-controls="faq-ans-5">
+          <span class="q-prefix">Q.</span>
+          <span class="q-text">他のスマホで同じデータを共有できる？</span>
+          <svg class="faq-chevron" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>
+        </button>
+        <div class="faq-answer" id="faq-ans-5"><div class="faq-answer-inner">同じグループIDとパスワードでログインすれば完全に同期されます。</div></div>
+      </div>
+
+      <div class="faq-item">
+        <button type="button" class="faq-question" aria-expanded="false" aria-controls="faq-ans-6">
+          <span class="q-prefix">Q.</span>
+          <span class="q-text">通信が切れたらデータはどうなる？</span>
+          <svg class="faq-chevron" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>
+        </button>
+        <div class="faq-answer" id="faq-ans-6"><div class="faq-answer-inner">オフラインでも記録可能で、通信が回復した時に自動でクラウドに同期されます。</div></div>
+      </div>
+
+      <div class="faq-item">
+        <button type="button" class="faq-question" aria-expanded="false" aria-controls="faq-ans-7">
+          <span class="q-prefix">Q.</span>
+          <span class="q-text">パスワードを忘れた場合は？</span>
+          <svg class="faq-chevron" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>
+        </button>
+        <div class="faq-answer" id="faq-ans-7"><div class="faq-answer-inner">ログイン画面にある「パスワードを忘れた」のリンクから、登録メールアドレス宛に再設定メールを送信してください。</div></div>
+      </div>
+
+      <div class="faq-item">
+        <button type="button" class="faq-question" aria-expanded="false" aria-controls="faq-ans-8">
+          <span class="q-prefix">Q.</span>
+          <span class="q-text">年度が変わったら学年はどうなる？</span>
+          <svg class="faq-chevron" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>
+        </button>
+        <div class="faq-answer" id="faq-ans-8"><div class="faq-answer-inner">設定タブの「4月1日の自動進級」がオンになっていれば、すべてのメンバーの学年が自動で更新されます。卒業生のデータも消えずにそのまま残ります。</div></div>
+      </div>
+
+
+      <div class="faq-item">
+        <button type="button" class="faq-question" aria-expanded="false" aria-controls="faq-ans-9">
+          <span class="q-prefix">Q.</span>
+          <span class="q-text">高校総体（インターハイ）や地区大会、段位審査のルールに対応していますか？</span>
+          <svg class="faq-chevron" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>
+        </button>
+        <div class="faq-answer" id="faq-ans-9"><div class="faq-answer-inner">はい、完全に対応しています。一般的な4射立ちだけでなく、一手（2射）や八矢（8射）、最大20射までの射数変更、立ち順の間隔（空き）の追加、途中交代やゲスト射手の設定、霞的・星的の矢所記録など、全日本弓道連盟および学生競技弓道の各種ルールに柔軟に対応しています。</div></div>
+      </div>
+
+      <div class="faq-item">
+        <button type="button" class="faq-question" aria-expanded="false" aria-controls="faq-ans-10">
+          <span class="q-prefix">Q.</span>
+          <span class="q-text">保護者や外部の指導者・OBにもスコアを見せられますか？</span>
+          <svg class="faq-chevron" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>
+        </button>
+        <div class="faq-answer" id="faq-ans-10"><div class="faq-answer-inner">はい。「ライブ共有リンク」を発行すれば、相手がアカウントを持っていなくても、URLを開くだけでブラウザからリアルタイムにスコアを閲覧できます。12時間〜7日間の「有効期限」や「合言葉（パスコード）」を設定できるため、練習後や大会後の情報漏洩も防げます。</div></div>
+      </div>
+
+      <div class="faq-item">
+        <button type="button" class="faq-question" aria-expanded="false" aria-controls="faq-ans-11">
+          <span class="q-prefix">Q.</span>
+          <span class="q-text">スマホを持っていない部員がいる場合でも使えますか？</span>
+          <svg class="faq-chevron" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>
+        </button>
+        <div class="faq-answer" id="faq-ans-11"><div class="faq-answer-inner">はい、問題なくご利用いただけます。記録係や顧問の先生のスマートフォンまたはタブレットが1台あれば、部員全員の立ち順や的中を一括して記録・管理できます。各部員が個別にスマートフォンを所持している必要はありません。</div></div>
+      </div>
+
+      <div class="faq-item">
+        <button type="button" class="faq-question" aria-expanded="false" aria-controls="faq-ans-12">
+          <span class="q-prefix">Q.</span>
+          <span class="q-text">蓄積したデータは手元にExcelで保存（エクスポート）できますか？</span>
+          <svg class="faq-chevron" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>
+        </button>
+        <div class="faq-answer" id="faq-ans-12"><div class="faq-answer-inner">はい。設定タブからいつでもすべての練習データや出欠記録をExcel（.xlsx）形式で一括書き出し（ダウンロード）できます。学校提出用の書類作成や、オフラインでの永久保管用としてもご活用いただけます。</div></div>
+      </div>
+
+      <div class="faq-item">
+        <button type="button" class="faq-question" aria-expanded="false" aria-controls="faq-ans-13">
+          <span class="q-prefix">Q.</span>
+          <span class="q-text">退部や卒業した部員のデータはどうなりますか？</span>
+          <svg class="faq-chevron" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>
+        </button>
+        <div class="faq-answer" id="faq-ans-13"><div class="faq-answer-inner">部員一覧で学年を「卒業生」に変更するか削除した場合でも、過去の練習記録や団体の総的中数・立ちの結果データが崩れることはありません。過去の輝かしい記録はそのままチームの歴史として安全に保持されます。</div></div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- CTAセクション -->
+  <section id="download" class="cta">
+    <h2 class="fade-up">今すぐ使い始めましょう</h2>
+    <p class="fade-up">ブラウザからすぐに利用開始。インストール不要、無料です。</p>
+
+    <!-- かんたん導入3ステップ -->
+    <div class="steps-grid fade-up">
+      <div class="step-card">
+        <span class="step-num">STEP 1</span>
+        <h3 class="step-title">登録するとその場で団体IDを発行</h3>
+        <p class="step-desc">メールアドレスとパスワード、部活名を入力するだけ。審査や待ち時間は一切なく、登録した直後の画面に団体IDが表示されます。</p>
+      </div>
+      <div class="step-card">
+        <span class="step-num">STEP 2</span>
+        <h3 class="step-title">部員名を登録（簡単）</h3>
+        <p class="step-desc">部員の名前や学年を登録すると、部員ごとに4桁の個人IDが割り振られます。団体IDと個人IDを伝えれば、部員各自のスマホからもパスワードなしでログインできます。</p>
+      </div>
+      <div class="step-card">
+        <span class="step-num">STEP 3</span>
+        <h3 class="step-title">今日の練習から即タップ記録</h3>
+        <p class="step-desc">4射・一手・矢所を選んで○×をタップするだけ。集計やグラフ化、出席率の計算はすべて自動で行われます。</p>
+      </div>
+    </div>
+
+    <a href="https://kyudoscoremanager.web.app/" target="_blank" rel="noopener noreferrer" class="btn-primary large fade-up">アプリを開く →</a>
+
+    
+    <!-- PC向け：スマホ即時起動QRコード -->
+    <div class="pc-qr-block fade-up">
+      <div class="pc-qr-title">📱 スマホで今すぐお試し</div>
+      <p class="pc-qr-desc">カメラでかざすだけで、インストール不要ですぐ起動します</p>
+      <img src="/qr_app.svg" alt="弓道部的中ノート アプリ起動用QRコード" class="pc-qr-img" width="130" height="130" loading="lazy" decoding="async">
+    </div>
+
+    <!-- 部内シェアボタン（Web Share API） -->
+    <div class="share-block fade-up">
+      <button type="button" id="share-site-btn" class="share-btn" aria-label="部員や仲間にこのサイトを共有する">
+        <span>📲 部員・顧問仲間に教える（共有）</span>
+      </button>
+    </div>
+
+    <p class="cta-microcopy fade-up">
+      ※ クレジットカード不要・メールアドレスのみで即日導入。いつでもExcel書き出し・退会可能です。
+    </p>
+  </section>
+
+  </main>
+
+
+  <!-- モバイル追従フローティングCTA -->
+  <div class="floating-cta-bar" aria-hidden="true">
+    <span class="floating-cta-text">🎯 弓道部的中ノート（完全無料）</span>
+    <a href="https://kyudoscoremanager.web.app/" target="_blank" rel="noopener noreferrer" class="btn-primary floating-cta-btn">アプリを開く →</a>
+  </div>
+
+  <!-- フッター -->
+  <footer>
+    <div class="footer-links">
+      <a href="#features">機能紹介</a>
+      <a href="#faq">よくある質問</a>
+      <a href="privacy.html">プライバシーポリシー</a>
+      <a href="terms.html">利用規約</a>
+    </div>
+    <p class="copyright">&copy; 2026 弓道部的中ノート. All rights reserved.</p>
+  </footer>
+
+  <!-- 上に戻るボタン -->
+  <button id="back-to-top" aria-label="ページの先頭に戻る">
+    <svg viewBox="0 0 24 24"><path d="M7 14l5-5 5 5z"/></svg>
+  </button>
+  <script type="module" src="/script.js"></script>
+</body>
+</html>

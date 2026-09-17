@@ -1,0 +1,18 @@
+# 依存パッケージ（npm installで再生成可能）
+node_modules/
+
+# ローカルでのデバッグ・スクリーンショット作業用ファイル
+# （本番サイトに使わないファイルはここに置かず、別フォルダで管理することを推奨）
+screenshot_run.log
+*.log
+
+# OS/エディタ関連
+.DS_Store
+Thumbs.db
+
+# ビルド物（Netlify などで作り直せる）
+dist/
+
+# 古い紹介ページ（KyudoScoreManagerLanding）から持ってきた未整理の画像。
+# アプリの画面写真で、公開するか決めていないので倉庫には入れない
+assets/未整理/

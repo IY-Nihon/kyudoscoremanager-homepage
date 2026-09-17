@@ -1,0 +1,29 @@
+/*
+  X-Frame-Options: SAMEORIGIN
+  X-Content-Type-Options: nosniff
+  X-XSS-Protection: 1; mode=block
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: camera=(), microphone=(), geolocation=()
+
+# 静的アセット（JS, CSS, 画像, フォント）は長期強力キャッシュ
+/assets/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/optimized/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# HTML、サイトマップ、robots.txt は常に最新確認（キャッシュ事故防止）
+/*.html
+  Cache-Control: public, max-age=0, must-revalidate
+
+/
+  Cache-Control: public, max-age=0, must-revalidate
+
+/sitemap.xml
+  Cache-Control: public, max-age=0, must-revalidate
+
+/robots.txt
+  Cache-Control: public, max-age=0, must-revalidate
+
+/sw.js
+  Cache-Control: public, max-age=0, must-revalidate

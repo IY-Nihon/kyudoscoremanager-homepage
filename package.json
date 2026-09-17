@@ -1,0 +1,38 @@
+{
+  "name": "kyudoscoremanagerlanding",
+  "version": "1.0.0",
+  "description": "弓道部的中ノート ランディングページ",
+  "type": "module",
+  "main": "script.js",
+  "scripts": {
+    "dev": "vite",
+    "build": "node scripts/optimize-images.mjs && vite build && node scripts/check-build.mjs",
+    "preview": "vite preview",
+    "optimize:images": "node scripts/optimize-images.mjs",
+    "test": "node scripts/test-site.mjs",
+    "check": "node scripts/check-build.mjs"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/IY-Nihon/kyudo-landing.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/IY-Nihon/kyudo-landing/issues"
+  },
+  "homepage": "https://github.com/IY-Nihon/kyudo-landing#readme",
+  "dependencies": {
+    "playwright": "^1.61.1"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-legacy": "^8.2.3",
+    "imagemin": "^9.0.1",
+    "imagemin-avif": "^0.1.6",
+    "imagemin-webp": "^8.0.0",
+    "qrcode": "^1.5.4",
+    "sharp": "^0.35.3",
+    "vite": "^8.2.2"
+  }
+}

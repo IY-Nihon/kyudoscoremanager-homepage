@@ -1,0 +1,71 @@
+{
+ "state": {
+  "archers": [],
+  "members": [],
+  "sessions": [],
+  "history": [],
+  "alumni": [],
+  "trash": [],
+  "permanentlyDeleted": [],
+  "deletedMembers": [],
+  "shotsPerRound": 8,
+  "activeSessionID": null,
+  "viewScale": 1,
+  "includeInStats": true,
+  "lastSessionTags": [
+   "#正規練習",
+   "#自主稽古"
+  ],
+  "currentSessionTags": [],
+  "activeGroupId": null,
+  "activeGroupName": null,
+  "publicGroupId": null,
+  "activeRole": "group",
+  "activeUserEmail": null,
+  "myMemberId": null,
+  "myMemberName": null,
+  "memberAuthVersion": 0,
+  "analysisSelectedTags": [],
+  "analysisTagLogic": "AND",
+  "historySelectedTags": [],
+  "historyTagLogic": "AND",
+  "tagTemplates": [
+   "#正規練習",
+   "#自主稽古"
+  ],
+  "currentFreshmanTerm": 53,
+  "lastPromotionYear": 2026,
+  "lastSyncTime": 1787775199705,
+  "isAdminMode": false,
+  "autoPromotionEnabled": true,
+  "analysisRankingSettings": {
+   "月ごと": {
+    "type": "ratio",
+    "value": 0
+   },
+   "期間指定": {
+    "type": "ratio",
+    "value": 0
+   },
+   "直近30日": {
+    "type": "ratio",
+    "value": 0
+   },
+   "今年度": {
+    "type": "ratio",
+    "value": 0
+   },
+   "すべて": {
+    "type": "ratio",
+    "value": 0
+   }
+  },
+  "enableArrowLocation": false,
+  "自動ロックする": true,
+  "保存時に出欠を確認する": true,
+  "横に並べる": false,
+  "帯を畳む": false,
+  "arrowTargetType": "kasumi36"
+ },
+ "version": 0
+}

@@ -13,7 +13,8 @@
 import fs from 'node:fs';
 import path from 'node:path';
 
-const 元の場所 = 'C:/Users/yutoi/Documents/kyudoscoremanager_app/docs/legal';
+// 2026-09-18 に Documents/kyudo/app へ移した（前は kyudoscoremanager_app）
+const 元の場所 = 'C:/Users/yutoi/Documents/kyudo/app/docs/legal';
 const 対 = [
   { md: 'privacy-policy.md', html: 'privacy.html', 題: 'プライバシーポリシー' },
   { md: 'terms-of-service.md', html: 'terms.html', 題: '利用規約' },

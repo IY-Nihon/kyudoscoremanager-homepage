@@ -1,7 +1,9 @@
 import fs from 'fs';
 import path from 'path';
+import { fileURLToPath } from 'url';
 
-const ROOT_DIR = 'C:/Users/yutoi/Downloads/KyudoScoreManager_homepage';
+// このファイルの 1 つ上（homepage）を見る。置き場を移しても動くよう決め打ちしない（9/18 の整理で Downloads から移って落ちていた）
+const ROOT_DIR = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const REQUIRED_FILES = [
   'index.html',
   'privacy.html',

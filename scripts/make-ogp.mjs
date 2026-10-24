@@ -7,7 +7,7 @@
  * WebP はブラウザでは軽くてよいが、**SNS のクローラーが読めないことがある**。
  * LINE のアプリ内ブラウザや古い Facebook / X のクローラーは展開できず、
  * 貼っても画像が出ない（真っ黒になる）。表示の速さより、確実に出ることを採る。
- * ここでは JPEG を作る。
+ * 同じ絵を 2 つ作る：assets/og-image.png（og:image・twitter:image が指す）と assets/ogp.jpg（構造化データのロゴ）。
  *
  * ■ 1200×630 にする理由
  * SNS が想定している寸法（およそ 1.91:1）。ここから外れると、
@@ -174,6 +174,8 @@ const 出 = await sharp(Buffer.from(地))
   .toBuffer();
 
 fs.writeFileSync(出し先, 出);
+// og:image は og-image.png を指している（index.html・privacy.html・terms.html）。同じ絵を PNG でも書く
+await sharp(出).png({ palette: true, colors: 256, compressionLevel: 9 }).toFile(path.join('assets', 'og-image.png'));
 const 大きさ = (出.length / 1024).toFixed(0);
 console.log(`${出し先} を作りました（${幅}×${高さ}・${大きさ}KB・端末は ${path.basename(端末元)}）`);
 if (出.length > 300 * 1024) console.log('※ 300KB を超えています。読まれないことがあるので、品質を下げてください');

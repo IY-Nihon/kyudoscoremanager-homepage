@@ -82,6 +82,8 @@ const 土台 = JSON.parse(fs.readFileSync(path.join(ここ, 'base-state.json'), 
   arrowTargetType: 'hoshi24',
   lastSyncTime: いま - 60000,
   isAdminMode: false,
+  // 自動ロックの既定はオフ（2026-09-13）。土台の控えはオンのままで、入れたマスが灰色に写る
+  自動ロックする: false,
 };
 const 控え = JSON.stringify(土台);
 
@@ -116,6 +118,15 @@ async function 頁をひらく(手直し) {
   const p = await c.newPage();
   await p.goto('http://127.0.0.1:' + 港 + '/');
   await p.waitForTimeout(中身 ? 5000 : 3500);
+  // 認証を持たせていないので、「ログインし直してください」の窓が出る（2026-10-24 から）。
+  // 実際に使うときは出ないので、「あとで」で閉じる（上の赤い帯は 帯を隠す で隠す）
+  if (中身) {
+    const あとで = p.getByText('あとで（記録は続けられます）', { exact: true });
+    if (await あとで.count()) {
+      await あとで.first().click();
+      await p.waitForTimeout(800);
+    }
+  }
   return { c, p };
 }
 
@@ -128,7 +139,12 @@ async function 移る(p, 名) {
 // 通信を持たないせいで出る帯は、実際の利用では出ないので隠す
 async function 帯を隠す(p) {
   await p.evaluate(() => {
-    const 消す文 = ['同期エラー: クラウドとの同期に失敗しました', 'オフライン', '接続が不安定です'];
+    const 消す文 = [
+      '同期エラー: クラウドとの同期に失敗しました',
+      'オフライン',
+      '接続が不安定です',
+      'ログインし直してください（ここを押す）。送れていない記録は、そのあと送られます。',
+    ];
     for (const el of document.querySelectorAll('div,span')) {
       const t = (el.textContent || '').trim();
       if (!消す文.includes(t)) continue;
@@ -264,29 +280,8 @@ const 仕事 = {};
   await c.close();
 };
 
-// 出欠の出席率。公式練習日を入れてから撮る
-仕事.attendance_ui = async () => {
-  const { c, p } = await 頁をひらく();
-  await 通信を止める(c);
-  await 移る(p, '出欠');
-  await 練習日を入れる(p);
-  await p.getByText('出席統計', { exact: true }).first().click();
-  await p.waitForTimeout(2000);
-  await 覗く(p, '出席統計');
-  await 撮る(p, 'attendance_ui');
-  await c.close();
-};
-
-// 練習日のカレンダー。予定表の読み取りの案内も一緒に写す
-仕事.attendance_calendar_ui = async () => {
-  const { c, p } = await 頁をひらく();
-  await 通信を止める(c);
-  await 移る(p, '出欠');
-  await 練習日を入れる(p);
-  await 覗く(p, '練習日設定');
-  await 撮る(p, 'attendance_calendar_ui');
-  await c.close();
-};
+// 出欠の 2 枚（attendance_ui・attendance_calendar_ui）はここでは撮れない（頭の説明）。
+// 前はここに撮る手順があったが、使う助け（通信を止める・練習日を入れる）が無く、走らせると落ちた
 
 仕事.settings_ui = async () => {
   const { c, p } = await 頁をひらく();
@@ -299,15 +294,9 @@ const 仕事 = {};
   await c.close();
 };
 
-/** 名前のマスを長押しして、その射手への操作を出す */
-async function 名前を長押し(p, 名前) {
-  const 的 = p.getByText(名前, { exact: false }).first();
-  const 箱 = await 的.boundingBox();
-  if (!箱) throw new Error('名前のマスが見つからない: ' + 名前);
-  await p.mouse.move(箱.x + 箱.width / 2, 箱.y + 箱.height / 2);
-  await p.mouse.down();
-  await p.waitForTimeout(1200);
-  await p.mouse.up();
+/** 名前のマスを押して、その射手への操作を出す（長押しは列を掴む動きになった） */
+async function 名前を押す(p, 名前) {
+  await p.getByText(名前, { exact: false }).first().click();
   await p.waitForTimeout(1500);
 }
 
@@ -335,10 +324,10 @@ async function 名前を長押し(p, 名前) {
   await c.close();
 };
 
-// 途中交代。長押しの menu から「途中交代」を選んだところ
+// 途中交代。名前を押して出る窓から「途中交代」を選んだところ
 仕事.record_swap_ui = async () => {
   const { c, p } = await 頁をひらく();
-  await 名前を長押し(p, '山田太');
+  await 名前を押す(p, '山田太');
   await p.getByText('途中交代', { exact: true }).first().click();
   await p.waitForTimeout(1800);
   await 覗く(p, '途中交代');

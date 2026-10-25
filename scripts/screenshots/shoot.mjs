@@ -17,6 +17,7 @@
  *
  * 出欠の2枚（attendance_ui / attendance_calendar_ui）はここでは撮れない。
  * 出席率の分母がクラウドの「公式練習日」なので、通信なしでは 0/0 になる。
+ * その 2 枚は shoot-attendance.mjs が検証環境の撮影用の団体にログインして撮る。
  */
 import { chromium } from "playwright";
 import fs from "node:fs";
@@ -301,8 +302,7 @@ const 仕事 = {};
   await c.close();
 };
 
-// 出欠の 2 枚（attendance_ui・attendance_calendar_ui）はここでは撮れない（頭の説明）。
-// 前はここに撮る手順があったが、使う助け（通信を止める・練習日を入れる）が無く、走らせると落ちた
+// 出欠の 2 枚（attendance_ui・attendance_calendar_ui）は shoot-attendance.mjs で撮る（頭の説明）
 
 仕事.settings_ui = async () => {
   const { c, p } = await 頁をひらく();

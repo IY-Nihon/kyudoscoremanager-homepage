@@ -1,7 +1,8 @@
+# X-XSS-Protection は 0（古いブラウザの XSS の見張りは誤作動のもとなので切る。2026-11-04）
 /*
   X-Frame-Options: SAMEORIGIN
   X-Content-Type-Options: nosniff
-  X-XSS-Protection: 1; mode=block
+  X-XSS-Protection: 0
   Referrer-Policy: strict-origin-when-cross-origin
   Permissions-Policy: camera=(), microphone=(), geolocation=()
 
@@ -26,4 +27,9 @@
   Cache-Control: public, max-age=0, must-revalidate
 
 /sw.js
+  Cache-Control: public, max-age=0, must-revalidate
+
+# ホーム画面に追加するときの決まり。型を明に出す（Netlify は .webmanifest を既定の型で返すことがある）
+/site.webmanifest
+  Content-Type: application/manifest+json; charset=utf-8
   Cache-Control: public, max-age=0, must-revalidate

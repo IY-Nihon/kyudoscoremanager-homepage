@@ -71,7 +71,8 @@ const 台 = http.createServer((req, res) => {
 await new Promise((r) => 台.listen(港, '127.0.0.1', r));
 
 let 誤り = 0;
-const b = await chromium.launch();
+// CHROMIUM_PATH を置くと、その Chromium で開く（playwright の版と入っているブラウザが合わない手元のため）
+const b = await chromium.launch(process.env.CHROMIUM_PATH ? { executablePath: process.env.CHROMIUM_PATH } : {});
 
 for (const [名, 幅, 高] of [
   ['パソコン', 1280, 800],
@@ -169,6 +170,42 @@ for (const 道 of ['/privacy.html', '/terms.html', '/404.html']) {
     誤り++;
   }
 }
+// Service Worker が入り、事前の控えの一覧を全部控えられるか（2026-11-04。前は一覧の /style.css・/script.js が
+// 本番で 404 になり、一度も入らなかった。一覧は scripts/after-build.mjs が作る）
+{
+  const 字 = fs.readFileSync(path.join(配信物, 'sw.js'), 'utf8');
+  const 合う = 字.match(/const PRECACHE_URLS = (\[[^\]]*\]);/);
+  const 名の合う = 字.match(/const CACHE_NAME = '([^']*)';/);
+  const 一覧 = 合う ? JSON.parse(合う[1]) : [];
+  if (!合う || !名の合う || 名の合う[1] === 'kyudo-hp-dev' || !一覧.length) {
+    console.error('✗ dist/sw.js の控えの一覧が作られていない（scripts/after-build.mjs が走っていない）');
+    誤り++;
+  } else {
+    for (const 道 of 一覧) {
+      const 返り = await fetch('http://127.0.0.1:' + 港 + 道);
+      if (!返り.ok) {
+        console.error(`✗ 事前に控える ${道} が無い（${返り.status}）`);
+        誤り++;
+      }
+    }
+    const c3 = await b.newContext();
+    const p3 = await c3.newPage();
+    await p3.goto('http://127.0.0.1:' + 港 + '/', { waitUntil: 'load' });
+    const 控えた = await p3.evaluate(async (名) => {
+      await navigator.serviceWorker.register('/sw.js');
+      await navigator.serviceWorker.ready;
+      const 控え = await caches.open(名);
+      return (await 控え.keys()).length;
+    }, 名の合う[1]);
+    console.log(`■ Service Worker：控え ${名の合う[1]} に ${控えた}/${一覧.length} 件`);
+    if (控えた !== 一覧.length) {
+      console.error('   ✗ 事前の控えが一覧どおりに入っていない');
+      誤り++;
+    }
+    await c3.close();
+  }
+}
+
 await b.close();
 台.close();
 

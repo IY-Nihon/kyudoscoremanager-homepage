@@ -184,10 +184,16 @@ const 始める = () => {
       // 押されたら、そこから数え直す（押した直後に切り替わると読めない）
       if (押された) 数え直す();
     }
+    // 動きを減らす設定の人には自動で切り替えない（点とスワイプでは切り替えられる）。
+    // タブが裏のあいだも止める（見えない所で回し続けない）
+    const 動きを減らす = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     function 数え直す() {
       if (時計) clearInterval(時計);
+      時計 = null;
+      if (動きを減らす || document.hidden) return;
       時計 = setInterval(() => 見せる(currentIdx + 1, false), 3000); // 3秒ごとに切り替え
     }
+    document.addEventListener('visibilitychange', 数え直す);
     見せる(0, false);
     数え直す();
   });
@@ -235,35 +241,8 @@ const 始める = () => {
     }, { passive: true });
   }
 
-  // ─── 超軽量・遅延ロード セッション解析（Microsoft Clarity等） ───
-  function initAnalyticsDelayed() {
-    const clarityId = window.__CLARITY_ID__ || '';
-    if (!window.clarity && clarityId) {
-      (function(c,l,a,r,i,t,y){
-        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-      })(window, document, "clarity", "script", clarityId);
-    }
-  }
+  // 外部の解析（Microsoft Clarity）は使わない（プライバシーポリシーは第三者のアクセス解析ツールを使わないと書いている。2026-11-04 に読み込みを外した）
 
-  let analyticsInitialized = false;
-  function triggerAnalytics() {
-    if (analyticsInitialized) return;
-    analyticsInitialized = true;
-    ['scroll', 'touchstart', 'mousemove', 'keydown'].forEach(evt => {
-      window.removeEventListener(evt, triggerAnalytics, { passive: true });
-    });
-    if ('requestIdleCallback' in window) {
-      window.requestIdleCallback(initAnalyticsDelayed, { timeout: 3000 });
-    } else {
-      setTimeout(initAnalyticsDelayed, 1500);
-    }
-  }
-
-  ['scroll', 'touchstart', 'mousemove', 'keydown'].forEach(evt => {
-    window.addEventListener(evt, triggerAnalytics, { passive: true, once: true });
-  });
 
 
   // ─── 部内シェア（Web Share API / クリップボードコピー） ───
@@ -299,8 +278,10 @@ const 始める = () => {
 
 
   // ─── オフライン対応 Service Worker の登録（道場・圏外閲覧対応） ───
-  if ('serviceWorker' in navigator && window.location.protocol === 'https:' || window.location.hostname === 'localhost') {
-    window.addEventListener('load', () => {
+  // 条件は括弧でくくる（前は && と || の結びが崩れ、localhost なら SW の無いブラウザでも登録しにいった）。
+  // module はページの load のあとに走ることがあるので、もう読み終えていればすぐ登録する（load を待つと二度と来ない）
+  if ('serviceWorker' in navigator && (window.location.protocol === 'https:' || window.location.hostname === 'localhost')) {
+    const 登録する = () => {
       navigator.serviceWorker.register('/sw.js').then((reg) => {
         // キャッシュ更新チェック
         reg.onupdatefound = () => {
@@ -313,10 +294,12 @@ const 始める = () => {
             };
           }
         };
-      }).catch((err) => {
+      }).catch(() => {
         // SW非対応またはプライベートブラウズ時は静かに無視
       });
-    });
+    };
+    if (document.readyState === 'complete') 登録する();
+    else window.addEventListener('load', 登録する, { once: true });
   }
 
 
